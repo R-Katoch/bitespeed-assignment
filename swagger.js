@@ -15,7 +15,7 @@ const baseSwagger = {
       description: 'Local Server',
     },
     {
-      url: 'https://stage-enterprise-api.getactyv.com',
+      url: 'https://bitespeed-assignment-f8i0.onrender.com',
       description: 'Production Server',
     },
   ],
