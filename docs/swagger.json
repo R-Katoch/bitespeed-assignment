@@ -1,0 +1,76 @@
+{
+    "paths": {
+      "/identify": {
+        "post": {
+          "summary": "Identify and link contact information",
+          "description": "Receives contact information and either links it to an existing contact or creates a new contact entry.",
+          "operationId": "identifyContact",
+          "tags": ["Contact Identification"],
+          "requestBody": {
+            "description": "Contact data to identify",
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "email": {
+                      "type": "string",
+                      "format": "email",
+                      "description": "Email address of the contact"
+                    },
+                    "phoneNumber": {
+                      "type": "string",
+                      "pattern": "^[0-9]{10,15}$",
+                      "description": "Phone number of the contact"
+                    }
+                  },
+                  "required": []
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Contact successfully identified or created",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "primaryContactId": {
+                        "type": "integer",
+                        "description": "The ID of the primary contact"
+                      },
+                      "emails": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "List of all associated email addresses"
+                      },
+                      "phoneNumbers": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "List of all associated phone numbers"
+                      },
+                      "secondaryContactIds": {
+                        "type": "array",
+                        "items": {
+                          "type": "integer"
+                        },
+                        "description": "Array of all Contact IDs that are secondary to the primary contact"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
